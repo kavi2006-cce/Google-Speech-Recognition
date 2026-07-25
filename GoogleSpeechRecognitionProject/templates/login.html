@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Voice Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+</head>
+<body class="auth-page">
+    <div class="auth-backdrop" aria-hidden="true">
+        <span class="backdrop-orb orb-a"></span>
+        <span class="backdrop-orb orb-b"></span>
+        <span class="backdrop-grid"></span>
+    </div>
+
+    <main class="auth-layout">
+        <section class="auth-illustration" aria-label="Voice assistant introduction">
+            <div class="illustration-card glass-panel">
+                <div class="brand-wrap">
+                    <span class="brand-badge">Voice AI Studio</span>
+                    <span class="brand-dot"></span>
+                </div>
+
+                <div class="voice-visual">
+                    <div class="wave wave-one"></div>
+                    <div class="wave wave-two"></div>
+                    <div class="wave wave-three"></div>
+                    <div class="voice-core"></div>
+                </div>
+
+                <div class="illustration-content">
+                    <h2>Speak naturally.</h2>
+                    <p>Turn voice commands into productivity with real-time speech recognition and smart actions.</p>
+                </div>
+
+                <ul class="feature-list">
+                    <li><span>🎙️</span> Live transcription</li>
+                    <li><span>⚡</span> Instant voice actions</li>
+                    <li><span>🔐</span> Secure personal workspace</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="auth-wrapper" aria-label="Login form">
+            <div class="auth-container">
+                <div class="auth-box glass-panel">
+                    <div class="auth-header">
+                        <h1>Welcome back</h1>
+                        <p>Access your voice workspace.</p>
+                    </div>
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            <div class="flash-messages">
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+
+                    <form method="POST" action="{{ url_for('login') }}" class="auth-form">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" required
+                                   placeholder="Enter your username" autocomplete="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required
+                                   placeholder="Enter your password" autocomplete="current-password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
