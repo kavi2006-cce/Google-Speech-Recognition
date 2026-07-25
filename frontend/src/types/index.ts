@@ -1,7 +1,7 @@
 export interface User {
   id: number;
-  username: str;
-  email: str;
+  username: string;
+  email: string;
   role: 'user' | 'admin';
   is_active: boolean;
   created_at: string;

@@ -50,7 +50,7 @@ export const AudioSpectrum: React.FC<AudioSpectrumProps> = ({ isRecording, audio
       const barWidth = width / barCount - 2;
 
       if (isRecording && analyser && dataArray) {
-        analyser.getByteFrequencyData(dataArray);
+        analyser.getByteFrequencyData(dataArray as any);
       }
 
       for (let i = 0; i < barCount; i++) {
